@@ -1,6 +1,8 @@
 import "~/styles/globals.css";
 
 import { GeistSans } from "geist/font/sans";
+import { Toaster } from "~/components/ui/sonner";
+import { TokenContextProvider } from "~/context/tokenContext";
 
 export const metadata = {
   title: "Nexudus Dashboard",
@@ -10,17 +12,17 @@ export const metadata = {
 
 export default function RootLayout({
   children,
-  modal,
 }: {
   children: React.ReactNode;
-  modal: React.ReactNode;
 }) {
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
-      <body>
-        <main>{children}</main>
-        {modal}
-        <div id="modal-root" />
+      <body className="bg-[url(https://img.freepik.com/premium-vector/seamless-pattern-with-lines-that-are-drawn-by-hand_686000-354.jpg?w=740)]">
+        <TokenContextProvider>
+          <main>{children}</main>
+        </TokenContextProvider>
+
+        <Toaster />
       </body>
     </html>
   );
